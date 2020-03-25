@@ -5,6 +5,7 @@ const app = require('../lib/app');
 const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 const Tweet = require('../lib/models/Tweet');
+const Comment = require('../lib/models/Comment');
 
 describe('app routes', () => {
   beforeAll(() => {
@@ -89,6 +90,24 @@ describe('app routes', () => {
         });
       });
   });
+
+  // GET ONE WITH COMMENTS - Failing
+  // it('gets a specific tweet by ID and its comments', async() => {
+  //   const tweet = await Tweet.create({ handle: 'Jane Doe', text: 'Sample Text' });
+  //   const comment = await Comment.create({ tweetId: tweet._id, handle: 'Another User', text: 'Typical comment' });
+
+  //   return request(app)
+  //     .get(`/api/v1/tweets/withcomments/${tweet._id}`)
+  //     .then(res => {
+  //       expect(res.body).toEqual({ 
+  //         _id: tweet._id.toString(),
+  //         handle: tweet.handle, 
+  //         text: tweet.text,
+  //         comments: 'test', 
+  //         __v: 0
+  //       });
+  //     });
+  // });
 
   // PATCH 
   it('updates a tweet\'s text', async() => {
