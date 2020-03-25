@@ -35,6 +35,21 @@ describe('app routes', () => {
       });
   });
 
+  // POST with random tweet
+  it('creates an empty tweet, so random text gets inserted', () => {
+    return request(app)
+      .post('/api/v1/tweets/')
+      .send({ handle: 'Jane Doe', text: '' })
+      .then(res => {
+        expect(res.body).toEqual({ 
+          _id: expect.any(String),
+          handle: 'Jane Doe', 
+          text: expect.any(String), 
+          __v: 0 
+        });
+      });
+  });
+
   // GET ALL
   it('gets all tweets', async() => {
     const tweets = await Tweet.create([{ 
